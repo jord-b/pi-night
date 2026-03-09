@@ -123,7 +123,7 @@ export default async function Home() {
         </h1>
 
         <p className="text-slate-500 text-base sm:text-lg mt-4 font-semibold max-w-xs sm:max-w-sm mx-auto leading-snug">
-          Irrational amounts of pie, rational coordination.
+          A completely rational event with an irrational amount of pie.
         </p>
 
         {/* Countdown */}

@@ -18,11 +18,11 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "π Night · March 14th",
   description:
-    "Who's bringing what pie? Sign the Pie-nup and commit to your crust.",
+    "A completely rational event with an irrational amount of pie. Sign the Pie-nup!",
   openGraph: {
     title: "π Night · March 14th",
     description:
-      "Who's bringing what pie? Sign the Pie-nup and commit to your crust.",
+      "A completely rational event with an irrational amount of pie. Sign the Pie-nup!",
   },
 };
 
