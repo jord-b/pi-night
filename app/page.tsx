@@ -2,6 +2,7 @@ import { createSupabaseClient, type PieCommitment } from "@/lib/supabase";
 import Countdown from "./Countdown";
 import PieNupSection from "./PieNupSection";
 import AddPieCard from "./AddPieCard";
+import PieCard from "./PieCard";
 
 export const dynamic = "force-dynamic";
 
@@ -182,36 +183,7 @@ export default async function Home() {
             {pies.map((pie) => {
               const config = TYPE_CONFIG[pie.pie_type] ?? TYPE_CONFIG.other;
               return (
-                <div
-                  key={pie.id}
-                  className="pie-card bg-white rounded-2xl shadow-sm border border-violet-100/80 overflow-hidden"
-                >
-                  <div className={`h-1.5 ${config.bar}`} />
-                  <div className="p-5">
-                    <div className="text-4xl mb-3 leading-none">🥧</div>
-                    <h3 className="font-serif text-xl text-violet-900 leading-tight">
-                      {pie.pie_name}
-                    </h3>
-                    <p className="text-slate-500 font-bold text-sm mt-1">
-                      by {pie.name}
-                    </p>
-                    <div className="flex items-center flex-wrap gap-2 mt-3">
-                      <span
-                        className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${config.badge}`}
-                      >
-                        {config.label}
-                      </span>
-                      <span className="text-xs text-slate-400 font-semibold">
-                        &middot; Serves {pie.serves}
-                      </span>
-                    </div>
-                    {pie.notes && (
-                      <p className="text-xs text-slate-400 mt-3 leading-relaxed italic border-t border-violet-50 pt-3">
-                        {pie.notes}
-                      </p>
-                    )}
-                  </div>
-                </div>
+                <PieCard key={pie.id} pie={pie} config={config} />
               );
             })}
 

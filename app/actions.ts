@@ -23,3 +23,13 @@ export async function addPie(formData: FormData) {
 
   revalidatePath("/");
 }
+
+export async function deletePie(id: string) {
+  const supabase = createSupabaseClient();
+  const { error } = await supabase
+    .from("pie_commitments")
+    .delete()
+    .eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/");
+}

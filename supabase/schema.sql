@@ -21,3 +21,8 @@ create policy "Anyone can view pies"
 create policy "Anyone can add a pie"
   on pie_commitments for insert
   with check (true);
+
+-- Allow anyone to delete a pie (run this in Supabase SQL editor if already deployed)
+create policy "Anyone can delete a pie"
+  on pie_commitments for delete
+  using (true);
