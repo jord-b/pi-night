@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["var(--font-playfair)", "Georgia", "serif"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-display)", "sans-serif"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       animation: {
         "float-pi": "floatPi 8s ease-in-out infinite",

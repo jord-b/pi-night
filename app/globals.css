@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --font-playfair: "Playfair Display", Georgia, serif;
-  --font-inter: "Inter", system-ui, sans-serif;
+  --font-display: "Fredoka One", sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
 }
 
 html {
@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background-color: #fff8ec;
+  background-color: #fdfaff;
 }
 
 @layer components {
@@ -22,27 +22,28 @@ body {
 
   .pie-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 24px 48px -8px rgba(180, 83, 9, 0.18);
+    box-shadow: 0 20px 40px -8px rgba(139, 92, 246, 0.2);
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, #f59e0b, #d97706);
+    background: linear-gradient(135deg, #f43f5e, #fb923c);
     color: white;
     font-weight: 700;
     padding: 1rem 2rem;
     border-radius: 9999px;
-    box-shadow: 0 8px 24px -4px rgba(245, 158, 11, 0.45);
+    box-shadow: 0 8px 24px -4px rgba(244, 63, 94, 0.45);
     transition: all 0.2s ease;
     border: none;
     cursor: pointer;
+    font-family: var(--font-body);
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, #d97706, #b45309);
-    box-shadow: 0 12px 32px -4px rgba(245, 158, 11, 0.55);
+    background: linear-gradient(135deg, #e11d48, #ea580c);
+    box-shadow: 0 12px 32px -4px rgba(244, 63, 94, 0.55);
     transform: translateY(-2px);
   }
 
@@ -58,23 +59,23 @@ body {
 
   .input-field {
     width: 100%;
-    border: 2px solid #fde68a;
+    border: 2px solid #e9d5ff;
     border-radius: 0.75rem;
     padding: 0.625rem 1rem;
-    color: #78350f;
-    background-color: rgba(255, 251, 235, 0.5);
-    transition: border-color 0.15s ease;
+    color: #3b0764;
+    background-color: #faf5ff;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
     outline: none;
     font-size: 0.9375rem;
+    font-family: var(--font-body);
   }
 
   .input-field::placeholder {
-    color: #fbbf24;
-    opacity: 0.7;
+    color: #c4b5fd;
   }
 
   .input-field:focus {
-    border-color: #f59e0b;
+    border-color: #a855f7;
     background-color: white;
   }
 }
