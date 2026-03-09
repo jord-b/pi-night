@@ -1,6 +1,7 @@
 import { createSupabaseClient, type PieCommitment } from "@/lib/supabase";
 import Countdown from "./Countdown";
 import PieNupSection from "./PieNupSection";
+import AddPieCard from "./AddPieCard";
 
 export const dynamic = "force-dynamic";
 
@@ -214,18 +215,7 @@ export default async function Home() {
               );
             })}
 
-            {/* Add-your-pie placeholder card */}
-            <div className="pie-card bg-violet-50/60 border-2 border-dashed border-violet-200 rounded-2xl overflow-hidden flex items-center justify-center min-h-[160px]">
-              <div className="text-center p-5">
-                <div className="text-3xl mb-2">➕</div>
-                <p className="text-violet-500 font-bold text-sm">
-                  Add your pie
-                </p>
-                <p className="text-violet-300 text-xs mt-0.5">
-                  Pie-nup above!
-                </p>
-              </div>
-            </div>
+            <AddPieCard />
           </div>
         )}
       </section>

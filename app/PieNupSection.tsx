@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { addPie } from "./actions";
 
 const TYPE_OPTIONS = [
@@ -43,6 +43,30 @@ export default function PieNupSection() {
     setSelectedType("sweet");
   };
 
+  // Listen for the add-card trigger from anywhere on the page
+  useEffect(() => {
+    const handler = () => openModal();
+    window.addEventListener("open-pie-nup", handler);
+    return () => window.removeEventListener("open-pie-nup", handler);
+  }, []);
+
+  // Lock body scroll while modal is open (fixes content bleeding through)
+  useEffect(() => {
+    if (!isOpen) return;
+    const scrollY = window.scrollY;
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollY);
+    };
+  }, [isOpen]);
+
   const closeModal = () => {
     if (isPending) return;
     setIsOpen(false);
@@ -78,7 +102,7 @@ export default function PieNupSection() {
       {/* Modal */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center animate-fade-in"
+          className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center animate-fade-in"
           role="dialog"
           aria-modal="true"
           aria-label="Sign the Pie-nup"
