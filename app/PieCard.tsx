@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 import { deletePie } from "./actions";
 import type { PieCommitment } from "@/lib/supabase";
 
@@ -13,7 +13,6 @@ export default function PieCard({
   pie: PieCommitment;
   config: Config;
 }) {
-  const [confirming, setConfirming] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = () => {
@@ -23,7 +22,7 @@ export default function PieCard({
   };
 
   return (
-    <div className="relative pie-card bg-white rounded-2xl shadow-sm border border-violet-100/80 overflow-hidden">
+    <div className={`relative pie-card bg-white rounded-2xl shadow-sm border border-violet-100/80 overflow-hidden transition-opacity ${isPending ? "opacity-40" : ""}`}>
       <div className={`h-1.5 ${config.bar}`} />
       <div className="p-5">
         <div className="text-4xl mb-3 leading-none">🥧</div>
@@ -32,9 +31,7 @@ export default function PieCard({
         </h3>
         <p className="text-slate-500 font-bold text-sm mt-1">by {pie.name}</p>
         <div className="flex items-center flex-wrap gap-2 mt-3">
-          <span
-            className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${config.badge}`}
-          >
+          <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${config.badge}`}>
             {config.label}
           </span>
           <span className="text-xs text-slate-400 font-semibold">
@@ -48,10 +45,10 @@ export default function PieCard({
         )}
       </div>
 
-      {/* Trash button */}
       <button
-        onClick={() => setConfirming(true)}
-        className="absolute top-3.5 right-3.5 text-slate-300 hover:text-rose-400 transition-colors"
+        onClick={handleDelete}
+        disabled={isPending}
+        className="absolute top-3.5 right-3.5 text-slate-400 hover:text-rose-500 transition-colors disabled:opacity-40"
         aria-label="Remove pie"
       >
         <svg
@@ -68,30 +65,6 @@ export default function PieCard({
           />
         </svg>
       </button>
-
-      {/* Confirm overlay */}
-      {confirming && (
-        <div className="absolute inset-0 bg-white/96 rounded-2xl flex flex-col items-center justify-center gap-3 p-4">
-          <p className="font-bold text-slate-700 text-sm text-center">
-            Remove this pie?
-          </p>
-          <div className="flex gap-2">
-            <button
-              onClick={handleDelete}
-              disabled={isPending}
-              className="bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold px-4 py-1.5 rounded-full transition-colors disabled:opacity-60"
-            >
-              {isPending ? "Removing…" : "Yes, remove"}
-            </button>
-            <button
-              onClick={() => setConfirming(false)}
-              className="bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold px-4 py-1.5 rounded-full transition-colors"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
