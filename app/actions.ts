@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createSupabaseClient } from "@/lib/supabase";
+import { createSupabaseClient, createSupabaseAdminClient } from "@/lib/supabase";
 
 export async function addPie(formData: FormData) {
   const supabase = createSupabaseClient();
@@ -25,7 +25,7 @@ export async function addPie(formData: FormData) {
 }
 
 export async function deletePie(id: string) {
-  const supabase = createSupabaseClient();
+  const supabase = createSupabaseAdminClient();
   const { error } = await supabase
     .from("pie_commitments")
     .delete()
